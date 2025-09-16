@@ -14,10 +14,8 @@ const HinduNewsScraper: React.FC = () => {
   const [finalResponse, setFinalResponse] = useState<FinalResponse | null>(null);
   const [error, setError] = useState<string>('');
 
-  // Fetch news from backend API
   const fetchLatestNews = async (): Promise<FinalResponse | null> => {
     try {
-      // Replace the below IP with your machine IP - backend connection
       const response = await fetch('http://192.168.29.226:5000/api/scrape-news', {
         method: 'GET',
         headers: {
@@ -43,7 +41,6 @@ const HinduNewsScraper: React.FC = () => {
     setError('');
 
     try {
-      // Call backend API directly
       console.log("Fetching latest news from backend...");
       const response = await fetchLatestNews();
 
@@ -63,7 +60,6 @@ const HinduNewsScraper: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation Bar */}
       <nav className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -79,9 +75,7 @@ const HinduNewsScraper: React.FC = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-4 py-8">
-        {/* Header Section */}
         <div className="text-center mb-12">          
           <button
             onClick={handleScrapeAndReframe}
@@ -98,7 +92,6 @@ const HinduNewsScraper: React.FC = () => {
           </button>
         </div>
 
-        {/* Error Display */}
         {error && (
           <div className="mb-8 max-w-4xl mx-auto">
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -117,11 +110,9 @@ const HinduNewsScraper: React.FC = () => {
           </div>
         )}
 
-        {/* News Article Display */}
         {finalResponse && (
           <div className="max-w-4xl mx-auto">
             <div className="bg-white shadow-sm rounded-lg overflow-hidden">
-              {/* Article Header */}
               <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-gray-900">Latest Article</h2>
@@ -137,7 +128,6 @@ const HinduNewsScraper: React.FC = () => {
                 </div>
               </div>
               
-              {/* Article Content */}
               <article className="px-6 py-8">
                 <h1 className="text-3xl font-bold text-gray-900 leading-tight mb-6 sm:text-4xl text-left">
                   {finalResponse.news.headline}
@@ -154,7 +144,6 @@ const HinduNewsScraper: React.FC = () => {
           </div>
         )}
 
-        {/* Empty State */}
         {!finalResponse && !error && !isLoading && (
           <div className="text-center py-12 max-w-md mx-auto">
             <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
